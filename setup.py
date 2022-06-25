@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 setup(name='YandexIOT',
       version='0.1',
@@ -6,7 +6,7 @@ setup(name='YandexIOT',
       url='https://github.com/Artingl/YandexIOT',
       author='Artingl',
       author_email='mikrobamboni@yandex.ru',
-      packages=['YandexIOT'],
+      packages=['YandexIOT', 'YandexIOT.Devices'],
       install_requires=[
-          'requests',
+          'requests==2.27.1',
       ])

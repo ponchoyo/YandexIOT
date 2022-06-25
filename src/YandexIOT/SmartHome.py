@@ -5,6 +5,12 @@ import requests
 
 class SmartHome:
     def __init__(self, token: str, token_type="Bearer"):
+        """Initializer for SmartHome class.
+
+        :param: token: Yandex oauth 2.0 token with access to SmartHome control.
+        :param: token_type: type of the token that Yandex oauth service has returned.
+        """
+
         self.token = token
         self.token_type = token_type
 
@@ -12,19 +18,11 @@ class SmartHome:
             "Authorization": f"{self.token_type} {self.token}"
         }
 
-    def get_home_info(self) -> t.Tuple[bool, dict]:
-        req = requests.get("https://api.iot.yandex.net/v1.0/user/info", headers=self.headers)
-
-        data = None
-        result = req.status_code == 200
-
-        if result:
-            data = req.json()
-
-        return result, data
-
     def get_devices(self) -> t.List[YandexIOT.Devices.SmartDevice]:
-        info = self.get_home_info()
+        """Returns a list of currently available devices.
+        """
+        
+        info = self._get_home_info()
         devices = []
 
         if info[0]:
@@ -38,6 +36,9 @@ class SmartHome:
         return devices
 
     def get_device_by_name(self, device_name):
+        """Returns a device by its name.
+        """
+        
         device = None
         for i in self.get_devices():
             if i.get_name() == device_name:
@@ -47,6 +48,9 @@ class SmartHome:
         return device
 
     def get_device_by_id(self, device_id):
+        """Returns a device by its id.
+        """
+        
         device = None
         for i in self.get_devices():
             if i.get_id() == device_id:
@@ -54,3 +58,14 @@ class SmartHome:
                 break
 
         return device
+
+    def _get_home_info(self) -> t.Tuple[bool, dict]:
+        req = requests.get("https://api.iot.yandex.net/v1.0/user/info", headers=self.headers)
+
+        data = None
+        result = req.status_code == 200
+
+        if result:
+            data = req.json()
+
+        return result, data
