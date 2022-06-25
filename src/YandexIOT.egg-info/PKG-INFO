@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: YandexIOT
-Version: 0.7
+Version: 0.1
 Summary: Library for controlling Yandex Smart Devices in Python
 Home-page: https://github.com/Artingl/YandexIOT
 Author: Artingl

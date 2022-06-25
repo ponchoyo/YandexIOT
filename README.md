@@ -7,8 +7,8 @@ Library for controlling Yandex Smart Devices in Python.
 pip install YandexIOT
 ```
 
-## Devices
-Currently, it supports only controlling light, but other devices are going to be implemented soon.
+## Documentation
+It's not completed still, but some useful information you can find in our [wiki](https://github.com/Artingl/YandexIOT/wiki)
 
 ## Example
 
